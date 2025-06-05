@@ -1,0 +1,28 @@
+<ion-menu side="start" menuId="main-menu" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menú</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+
+      <ion-menu-toggle auto-hide="true">
+        <ion-item routerLink="/login" routerDirection="root">Iniciar sesión</ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle auto-hide="true">
+        <ion-item routerLink="/view-recipes">Recetas Guardadas</ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle auto-hide="true">
+        <ion-item routerLink="/register-recipe">Registrar Receta</ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle auto-hide="true">
+        <ion-item routerLink="/historial">Ver Registros</ion-item>
+      </ion-menu-toggle>
+
+    </ion-list>
+  </ion-content>
+</ion-menu>

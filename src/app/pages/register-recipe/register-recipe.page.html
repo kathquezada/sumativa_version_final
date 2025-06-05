@@ -1,0 +1,60 @@
+
+  <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registrar receta</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Registrar receta</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="lottie-wrapper">
+      <lottie-player class="lottie-player" 
+      src="../../../assets/animations/register-recipe.json"
+      background="transparent"
+      speed="1"
+      time="1"
+      loop autoplay
+      >
+    </lottie-player>
+  </div>
+  <div class="login_container">
+    <ion-card>
+      <ion-card-header class="ion-text-center">
+                <ion-card-title>Nueva receta</ion-card-title>
+                <ion-card-subtitle>Completar formulario</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+                  <ion-item>
+                    <ion-label position="floating">Nombre</ion-label>
+                    <ion-input type="input"></ion-input>
+                  </ion-item>
+
+                  <ion-item>
+                    <ion-label position="floating">Ingredientes</ion-label>
+                    <ion-input type="input"></ion-input>
+                  </ion-item>
+
+                  <ion-item>
+                    <ion-label position="floating">Instrucciones</ion-label>
+                    <ion-input type="input"></ion-input>
+                  </ion-item>
+
+                  <ion-item>
+                    <ion-label position="floating">Tiempo estimado</ion-label>
+                    <ion-input type="input"></ion-input>
+                  </ion-item>
+
+                  
+                <ion-button expand="block" class="login-button" color="mytheme" (click)="confirmarRegistro()">Registrar receta</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+  

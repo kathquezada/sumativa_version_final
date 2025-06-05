@@ -25,3 +25,16 @@
 #container a {
   text-decoration: none;
 }
+
+.lottie-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    margin: 2px;
+    
+}
+
+.lottie-player{
+    width: 80%; 
+}

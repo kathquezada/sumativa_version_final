@@ -1,0 +1,21 @@
+.lottie-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    margin: 2px;
+    
+}
+
+.lottie-player{
+    width: 80%; 
+}
+
+.custom-loading .loading-backdrop {
+    background: #000 !important;
+    opacity: 1 !important;
+}
+
+.custom-loading .custom-spinner {
+    background: #fff !important;
+}
