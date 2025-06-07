@@ -10,3 +10,11 @@ ion-img{
     padding: 2px;
     margin: 2px;
 }
+
+.recipe-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}

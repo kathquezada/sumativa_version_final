@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-recipe',
@@ -10,7 +11,8 @@ import { AlertController } from '@ionic/angular';
 export class RegisterRecipePage implements OnInit {
 
   constructor(
-    private alertController: AlertController
+    private alertController: AlertController,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class RegisterRecipePage implements OnInit {
           text: 'Aceptar',
           handler: () => {
             this.registerRecipe();
+            this.router.navigate(['/view-recipes']);
           }
         }
       ]

@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'view-recipes',
     loadChildren: () => import('./pages/view-recipes/view-recipes.module').then( m => m.ViewRecipesPageModule)
   },
+  {
+    path: 'ayuda',
+    loadChildren: () => import('./pages/ayuda/ayuda.module').then( m => m.AyudaPageModule)
+  },
   
 ];
 
