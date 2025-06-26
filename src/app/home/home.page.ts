@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { CamServiceService } from '../services/cam-service.service';
+import { Photo } from '@capacitor/camera';
 
 @Component({
   selector: 'app-home',
@@ -35,7 +37,14 @@ export class HomePage {
   imgCardListIII: string;
   imgCardListIV: string;
 
-  constructor(private router: Router) {
+
+  public vistadefoto: string | undefined;
+
+  constructor(
+    private router: Router,
+    private serviciocamara: CamServiceService
+
+  ) {
     // Interpolacion imagen en Login
     this.titCardI = 'FoodRecipeApp'    
     this.subtitCardI ='APLICACIÓN DE RECETAS'
@@ -58,6 +67,11 @@ export class HomePage {
     this.imgCardListII = 'https://images.unsplash.com/photo-1481931715705-36f5f79f1f3d?q=80&w=1512&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
     this.imgCardListIII = 'https://plus.unsplash.com/premium_photo-1664472743686-4bd63ad502fd?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
     this.imgCardListIV = 'https://images.unsplash.com/photo-1602162786736-1575a5b1be76?q=80&w=1479&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+  }
+
+  async tomarFoto(): Promise<void>{
+    const foto : Photo = await this.serviciocamara.capturarFoto();
+    this.vistadefoto = foto.webPath;
   }
 
   redHome(){

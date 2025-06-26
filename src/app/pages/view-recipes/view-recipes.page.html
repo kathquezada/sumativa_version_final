@@ -32,36 +32,23 @@
       <ion-card-subtitle>Recetas registradas</ion-card-subtitle>
     </ion-card-header>
 
-    <!-- Lista de recetas -->
-    <ng-container *ngFor="let data of recipes">
-      <ion-card-content class="card-view-recipes">
+    <ion-card-content>
+      <ion-list *ngIf="recetas.length > 0; else sinRecetas">
+        <ion-card *ngFor="let receta of recetas">
+          <ion-card-header>
+            <ion-card-title>{{ receta.nombre }}</ion-card-title>
+            <ion-card-subtitle>Tiempo: {{ receta.tiempo }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p><strong>Ingredientes:</strong> {{ receta.ingredientes }}</p>
+            <p><strong>Instrucciones:</strong> {{ receta.instrucciones }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
 
-        <ion-img [src]="data.imagen" class="recipe-img"></ion-img>
-
-        <ion-item lines="none">
-          <ion-label position="stacked">Nombre: </ion-label>
-          <p>{{ data.nombre }}</p>
-        </ion-item>
-
-        <ion-item lines="none">
-          <ion-label position="stacked">Ingredientes: </ion-label>
-          <p>{{ data.ingredientes }}</p>
-        </ion-item>
-
-        <ion-item lines="none">
-          <ion-label position="stacked">Instrucciones: </ion-label>
-          <p>{{ data.instrucciones }}</p>
-        </ion-item>
-
-        <ion-item lines="none">
-          <ion-label position="stacked">Tiempo: </ion-label>
-          <p>{{ data.tiempo }}</p>
-        </ion-item>
-
-      
-
-        <ion-divider><br></ion-divider>
-      </ion-card-content>
-    </ng-container>
+      <ng-template #sinRecetas>
+        <p>No hay recetas guardadas aún.</p>
+      </ng-template>
+    </ion-card-content>
   </ion-card>
 </ion-content>

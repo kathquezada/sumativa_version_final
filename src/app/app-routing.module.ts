@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    canActivate: [authGuard] // aquí usas tu guard
+    //canActivate: [authGuard] // aquí usas tu guard
   },
   {
     path: '',
@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: 'register-recipe',
     loadChildren: () => import('./pages/register-recipe/register-recipe.module').then( m => m.RegisterRecipePageModule),
-    canActivate: [authGuard] // aquí usas tu guard
+    //canActivate: [authGuard] // aquí usas tu guard
   },
   {
     path: 'view-recipes',
