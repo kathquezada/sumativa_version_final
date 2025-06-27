@@ -40,10 +40,12 @@
             <ion-card-subtitle>Tiempo: {{ receta.tiempo }}</ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
+            <img *ngIf="receta.imagen" [src]="receta.imagen" alt="Imagen de la receta" />
             <p><strong>Ingredientes:</strong> {{ receta.ingredientes }}</p>
             <p><strong>Instrucciones:</strong> {{ receta.instrucciones }}</p>
           </ion-card-content>
         </ion-card>
+
       </ion-list>
 
       <ng-template #sinRecetas>

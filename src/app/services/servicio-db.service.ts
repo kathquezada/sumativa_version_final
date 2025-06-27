@@ -10,6 +10,9 @@ export interface Receta {
   ingredientes: string;
   instrucciones: string;
   tiempo: string;
+  imagen?: string  // opcional
+  
+  
 }
 
 @Injectable({
@@ -17,6 +20,7 @@ export interface Receta {
 })
 export class ServicioDbService {
   public database!: SQLiteObject;
+  
 
   // SQL para crear tabla de recetas
   private sqlCrearRecetas: string = `
@@ -25,7 +29,9 @@ export class ServicioDbService {
       nombre TEXT,
       ingredientes TEXT,
       instrucciones TEXT,
-      tiempo TEXT
+      tiempo TEXT,
+      imagen TEXT
+
     )`;
 
   // Observable para manejar recetas en tiempo real
@@ -57,6 +63,18 @@ export class ServicioDbService {
     await toast.present();
   }
 
+  async eliminarBD() {
+  await this.sqlite.deleteDatabase({
+    name: 'recetas.db',
+    location: 'default',
+  }).then(() => {
+    this.presentToast('BD eliminada');
+  }).catch(e => {
+    this.presentToast('Error al eliminar BD: ' + e);
+  });
+}
+
+
   // Alert
   async presentAlerte(msj: string) {
     const alert = await this.alertController.create({
@@ -67,21 +85,22 @@ export class ServicioDbService {
     await alert.present();
   }
 
-  // Crear BD y tablas
   crearBD() {
-    this.sqlite
-      .create({
-        name: 'recetas.db',
-        location: 'default',
-      })
-      .then((db: SQLiteObject) => {
-        this.database = db;
-        this.crearTablas();
-      })
-      .catch((e) => {
-        this.presentToast('Error al crear BD: ' + e);
-      });
-  }
+  this.sqlite.create({
+    name: 'recetas.db',
+    location: 'default',
+  })
+  .then((db: SQLiteObject) => {
+    this.database = db;
+    this.database.executeSql('DROP TABLE IF EXISTS receta', [])
+      .then(() => this.crearTablas())
+      .catch(e => this.presentToast('Error al eliminar tabla: ' + e));
+  })
+  .catch((e) => {
+    this.presentToast('Error al crear BD: ' + e);
+  });
+}
+
 
   async crearTablas() {
     try {
@@ -95,9 +114,9 @@ export class ServicioDbService {
 
   // Insertar nueva receta
   async agregarReceta(receta: Omit<Recetas, 'id'>) {
-    const sql = `INSERT INTO receta (nombre, ingredientes, instrucciones, tiempo)
-                VALUES (?, ?, ?, ?)`;
-    const data = [receta.nombre, receta.ingredientes, receta.instrucciones, receta.tiempo];
+    const sql = `INSERT INTO receta (nombre, ingredientes, instrucciones, tiempo, imagen)
+                VALUES (?, ?, ?, ?, ?)`;
+    const data = [receta.nombre, receta.ingredientes, receta.instrucciones, receta.tiempo, receta.imagen];
     try {
       await this.database.executeSql(sql, data);
       this.presentToast('Receta guardada');
@@ -115,7 +134,7 @@ export class ServicioDbService {
     const items: Recetas[] = [];
     for (let i = 0; i < res.rows.length; i++) {
       const r = res.rows.item(i);
-      items.push(new Recetas(r.id, r.nombre, r.ingredientes, r.instrucciones, r.tiempo));
+      items.push(new Recetas(r.id, r.nombre, r.ingredientes, r.instrucciones, r.tiempo, r.imagen));
     }
     this.listaRecetas.next(items);
   } catch (e) {
@@ -124,13 +143,4 @@ export class ServicioDbService {
 }
 
 
-  // Eliminar receta (opcional)
-  async eliminarReceta(id: number) {
-    await this.database
-      .executeSql('DELETE FROM receta WHERE id = ?', [id])
-      .then(() => {
-        this.presentToast('Receta eliminada');
-        this.buscarRecetas();
-      });
-  }
 }

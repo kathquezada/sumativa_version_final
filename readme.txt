@@ -47,4 +47,13 @@ PASO A PASO DE ESTA SEMANA:
         - npm install -save @awesome-cordova-plugins/core
         - ionic capacitor copy android
 
+        - creamos el servicio-db luego de haber impoortado sqlite en appmodule (dentro del servicio esta la creacion de una tabal de ejemplo y ciertos metodos funciones para trabajar)
+        -   //  variable sentencia creacion de table
+            //  variable sentencia registros por defecto en la tabla
+            //  observable para  manipular los registros en la tabla ejemplo
+            //  para manipular si la bd esta lista o no para manipulacion
+            // funcion que crea la tabla
+
+        - Crear servicio que representa la tabla Ejemplo
+
     PASO 3, CONSUMO DE API
