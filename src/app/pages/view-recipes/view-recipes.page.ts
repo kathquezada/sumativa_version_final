@@ -15,10 +15,10 @@ export class ViewRecipesPage implements OnInit {
   constructor(private db: ServicioDbService) {}
 
   ngOnInit() {
-    this.db.buscarRecetas(); // carga las recetas desde SQLite
+    this.db.buscarRecetas(); // carga las recetas desde srvicio con la funcion SQLite
     this.db.listaRecetas.subscribe((res) => {
       this.recetas = res;
-      console.log('📦 Recetas cargadas:', res);
+      console.log('Recetas cargadas:', res);
     });
   }
 

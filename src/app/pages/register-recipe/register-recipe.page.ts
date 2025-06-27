@@ -17,6 +17,7 @@ export class RegisterRecipePage implements OnInit {
   @ViewChild('ingredientesInput') ingredientesInput!: IonInput;
   @ViewChild('instruccionesInput') instruccionesInput!: IonInput;
   @ViewChild('tiempoInput') tiempoInput!: IonInput;
+  @ViewChild('imagenInput') imagenInput!: any;
 
   constructor(
     private alertController: AlertController,
@@ -51,13 +52,30 @@ export class RegisterRecipePage implements OnInit {
     await alert.present();
   }
 
+  selectedImageBase64: string = '';
+
+  onImageSelected(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.selectedImageBase64 = reader.result as string;
+      console.log('🖼 Imagen cargada en base64:', this.selectedImageBase64);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+
   registerRecipe() {
     const receta = new Recetas(
       0, // el ID es autoincremental
       this.nombreInput.value?.toString() || '',
       this.ingredientesInput.value?.toString() || '',
       this.instruccionesInput.value?.toString() || '',
-      this.tiempoInput.value?.toString() || ''
+      this.tiempoInput.value?.toString() || '',
+      this.selectedImageBase64 // ← aquí agregas la imagen
     );
 
     if (

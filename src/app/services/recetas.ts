@@ -4,6 +4,7 @@ export class Recetas {
     public nombre: string,
     public ingredientes: string,
     public instrucciones: string,
-    public tiempo: string
+    public tiempo: string,
+    public imagen?: string  // opcional
   ) {}
 }

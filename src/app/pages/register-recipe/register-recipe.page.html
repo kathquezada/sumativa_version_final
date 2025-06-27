@@ -51,6 +51,12 @@
   <ion-input #tiempoInput type="text"></ion-input>
 </ion-item>
 
+<ion-item>
+  <ion-label position="stacked">Imagen (opcional)</ion-label>
+  <input type="file" #imagenInput (change)="onImageSelected($event)" />
+</ion-item>
+
+
 
                   
                 <ion-button expand="block" class="login-button" color="mytheme" (click)="confirmarRegistro()">Registrar receta</ion-button>
