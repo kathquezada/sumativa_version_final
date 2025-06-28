@@ -81,10 +81,8 @@ export class ServicioDbService {
     location: 'default',
   })
   .then((db: SQLiteObject) => {
-    this.database = db;
-    this.database.executeSql('DROP TABLE IF EXISTS receta', [])
-      .then(() => this.crearTablas())
-      .catch(e => this.presentToast('Error al eliminar tabla: ' + e));
+    this.database = db;    
+    this.crearTablas()     
   })
   .catch((e) => {
     this.presentToast('Error al crear BD: ' + e);
