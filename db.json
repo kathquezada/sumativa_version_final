@@ -1,0 +1,9 @@
+{
+  "users": [
+    { "id": 1, "username": "cristobal", "password": "1234" },
+    { "id": 2, "username": "sofia", "password": "5678" }
+  ],
+  "recetas": [
+    { "id": 1, "nombre": "Tortilla", "ingredientes": "Huevos, papa", "tiempo": "20 min" }
+  ]
+}

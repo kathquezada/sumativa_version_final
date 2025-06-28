@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    //canActivate: [authGuard] // aquí usas tu guard
+    canActivate: [authGuard] // aquí usas tu guard
   },
   {
     path: '',
@@ -20,24 +20,32 @@ const routes: Routes = [
   {
     path: 'register-recipe',
     loadChildren: () => import('./pages/register-recipe/register-recipe.module').then( m => m.RegisterRecipePageModule),
-    //canActivate: [authGuard] // aquí usas tu guard
+    canActivate: [authGuard] // aquí usas tu guard
   },
   {
     path: 'view-recipes',
-    loadChildren: () => import('./pages/view-recipes/view-recipes.module').then( m => m.ViewRecipesPageModule)
+    loadChildren: () => import('./pages/view-recipes/view-recipes.module').then( m => m.ViewRecipesPageModule),
+    canActivate: [authGuard] // aquí usas tu guard
   },
   {
     path: 'ayuda',
-    loadChildren: () => import('./pages/ayuda/ayuda.module').then( m => m.AyudaPageModule)
+    loadChildren: () => import('./pages/ayuda/ayuda.module').then( m => m.AyudaPageModule),
+    canActivate: [authGuard] // aquí usas tu guard
   },
   {
     path: 'not-found',
     loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
-   {
+   
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
     path: '**', // 🚨 RUTA COMODÍN
     redirectTo: 'not-found'
-  }
+  },
+
 
   
 ];

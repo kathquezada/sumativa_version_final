@@ -63,17 +63,7 @@ export class ServicioDbService {
     await toast.present();
   }
 
-  async eliminarBD() {
-  await this.sqlite.deleteDatabase({
-    name: 'recetas.db',
-    location: 'default',
-  }).then(() => {
-    this.presentToast('BD eliminada');
-  }).catch(e => {
-    this.presentToast('Error al eliminar BD: ' + e);
-  });
-}
-
+  
 
   // Alert
   async presentAlerte(msj: string) {

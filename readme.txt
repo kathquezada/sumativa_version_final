@@ -55,5 +55,8 @@ PASO A PASO DE ESTA SEMANA:
             // funcion que crea la tabla
 
         - Crear servicio que representa la tabla Ejemplo
+        - creacion tabla usuarios para tambien hacer sus registros
 
-    PASO 3, CONSUMO DE API
+    PASO 4, CONSUMO DE API
+
+        - creamos backend en django , donde creamos
