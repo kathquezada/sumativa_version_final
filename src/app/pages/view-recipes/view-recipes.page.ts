@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServicioDbService } from 'src/app/services/servicio-db.service';
 import { Recetas } from 'src/app/services/recetas';
 import '@lottiefiles/lottie-player';
+import { MealDbService } from 'src/app/services/mealdb.service';
 
 @Component({
   selector: 'app-view-recipes',
@@ -10,9 +11,14 @@ import '@lottiefiles/lottie-player';
   standalone: false,
 })
 export class ViewRecipesPage implements OnInit {
+  categories: any[] = [];
   recetas: Recetas[] = [];
 
-  constructor(private db: ServicioDbService) {}
+  constructor(
+     private db: ServicioDbService,
+     private mealDbService: MealDbService 
+  ) {}
+
 
   ngOnInit() {
     this.db.buscarRecetas(); // carga las recetas desde srvicio con la funcion SQLite
@@ -20,6 +26,10 @@ export class ViewRecipesPage implements OnInit {
       this.recetas = res;
       console.log('Recetas cargadas:', res);
     });
+    this.mealDbService.getCategories().subscribe(response => {
+        this.categories = response.categories;
+        console.log(this.categories);
+      });
   }
 
 }

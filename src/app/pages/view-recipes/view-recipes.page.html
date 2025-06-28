@@ -53,4 +53,30 @@
       </ng-template>
     </ion-card-content>
   </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Descure nuevas recetas</ion-card-title>
+      <ion-card-subtitle>Obtenidos por la API themealdb</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-card *ngFor="let cat of categories">
+          <ion-card-header>
+            <ion-card-title>{{ cat.strCategory }}</ion-card-title>
+         
+          </ion-card-header>
+          <ion-card-content>
+            <img [src]="cat.strCategoryThumb" alt="Imagen de la receta" />
+           
+            <p><strong>Descripction:</strong> {{ cat.strCategoryDescription }}...</p>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-list>
+
+      
+    </ion-card-content>
+  </ion-card>
 </ion-content>

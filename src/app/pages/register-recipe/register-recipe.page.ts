@@ -3,7 +3,8 @@ import { AlertController, IonInput } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ServicioDbService } from 'src/app/services/servicio-db.service';
 import { Recetas } from 'src/app/services/recetas';
-
+import { CamServiceService } from 'src/app/services/cam-service.service';
+import { Photo } from '@capacitor/camera';
 
 @Component({
   selector: 'app-register-recipe',
@@ -19,10 +20,13 @@ export class RegisterRecipePage implements OnInit {
   @ViewChild('tiempoInput') tiempoInput!: IonInput;
   @ViewChild('imagenInput') imagenInput!: any;
 
+  public vistadefoto: string | undefined;
+
   constructor(
     private alertController: AlertController,
     private router: Router,
-    private db: ServicioDbService
+    private db: ServicioDbService,
+    private serviciocamara: CamServiceService,
   ) {}
 
   ngOnInit() {}
@@ -69,27 +73,38 @@ export class RegisterRecipePage implements OnInit {
   }
 
   registerRecipe() {
-    const receta = new Recetas(
-      0, // el ID es autoincremental
-      this.nombreInput.value?.toString() || '',
-      this.ingredientesInput.value?.toString() || '',
-      this.instruccionesInput.value?.toString() || '',
-      this.tiempoInput.value?.toString() || '',
-      this.selectedImageBase64 // ← aquí agregas la imagen
-    );
+  const imagenBase64 = this.selectedImageBase64 || this.vistadefoto || ''; // preferencia: archivo > cámara
 
-    if (
-      receta.nombre.trim() === '' ||
-      receta.ingredientes.trim() === '' ||
-      receta.instrucciones.trim() === '' ||
-      receta.tiempo.trim() === ''
-    ) {
-      this.db.presentToast('Completa todos los campos.');
-      return;
-    }
+  const receta = new Recetas(
+    0, // el ID es autoincremental
+    this.nombreInput.value?.toString() || '',
+    this.ingredientesInput.value?.toString() || '',
+    this.instruccionesInput.value?.toString() || '',
+    this.tiempoInput.value?.toString() || '',
+    imagenBase64
+  );
 
-    this.db.agregarReceta(receta);
-    console.log('Receta registrada');
+  if (
+    receta.nombre.trim() === '' ||
+    receta.ingredientes.trim() === '' ||
+    receta.instrucciones.trim() === '' ||
+    receta.tiempo.trim() === ''
+  ) {
+    this.db.presentToast('Completa todos los campos.');
+    return;
   }
+
+  this.db.agregarReceta(receta);
+  console.log('Receta registrada');
+}
+
+
+  async tomarFoto(): Promise<void> {
+  const foto: Photo = await this.serviciocamara.capturarFoto();
+  this.vistadefoto = foto.dataUrl;
+  this.selectedImageBase64 = foto.dataUrl || '';
+}
+
+
 
 }

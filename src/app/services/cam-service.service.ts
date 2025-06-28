@@ -6,19 +6,23 @@ import { Camera, CameraResultType, CameraSource, Photo } from "@capacitor/camera
 })
 export class CamServiceService {
 
-  public photo : Photo | null = null; // foto puede ser publica
-  constructor() { }
+  public photo: Photo | null = null;
 
-  async capturarFoto(): Promise<Photo>{    
-    // creamos constant photo, donde espera camara par aobtener photo,donde nos da la url y source indica donde esta la camara.
+  constructor() {}
+
+  async capturarFoto(): Promise<Photo> {
     const captura: Photo = await Camera.getPhoto({
-      resultType: CameraResultType.Uri, 
+      resultType: CameraResultType.DataUrl,  // ✅ <-- CAMBIA ESTO
       source: CameraSource.Camera,
       quality: 100
     });
+
     this.photo = captura;
     return captura;
+  }
 
+  // ✅ Método para obtener solo el base64
+  async readAsBase64(foto: Photo): Promise<string> {
+    return foto.dataUrl?.split(',')[1] || '';
   }
 }
-//<>
