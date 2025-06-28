@@ -31,6 +31,10 @@
                 <ion-card-subtitle>Completar formulario</ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
+        <div *ngIf="vistadefoto">
+          <img [src]="vistadefoto" style="max-width: 100%; margin: 16px 0;" alt="error cargar foto">
+
+        </div>
                   <ion-item>
   <ion-label position="floating">Nombre</ion-label>
   <ion-input #nombreInput type="text"></ion-input>
@@ -55,6 +59,12 @@
   <ion-label position="stacked">Imagen (opcional)</ion-label>
   <input type="file" #imagenInput (change)="onImageSelected($event)" />
 </ion-item>
+<ion-item>
+  <ion-label position="stacked">Tomar foto (opcional)</ion-label>
+  <ion-button (click)="tomarFoto()">
+          Tomar foto
+        </ion-button>
+</ion-item>
 
 
 
@@ -69,16 +79,7 @@
       <ion-card-title>
         Tomar foto
       </ion-card-title>
-      <ion-card-content class="ion-content">
-        <ion-button (click)="tomarFoto()">
-          Tomar foto
-        </ion-button>
-
-        <div *ngIf="vistadefoto">
-          <img [src]="vistadefoto" style="max-width: 100%; margin: 16px 0;" alt="error cargar foto">
-
-        </div>
-      </ion-card-content>
+     
     </ion-card>
   </div>
 </ion-content>

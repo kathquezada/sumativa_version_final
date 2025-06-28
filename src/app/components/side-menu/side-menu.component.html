@@ -1,36 +1,44 @@
 <ion-menu side="start" menuId="main-menu" contentId="main-content">
   <ion-header>
     <ion-toolbar>
+      
       <ion-title>Menú</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <ion-list>
 
-      <ion-menu-toggle auto-hide="true">
+      <ion-item>
+        <ion-icon name="home-outline"></ion-icon>
         <ion-item routerLink="/home" routerDirection="root">Inicio</ion-item>
-      </ion-menu-toggle>
+      </ion-item>
 
-      <ion-menu-toggle auto-hide="true">
+      <ion-item>
+        <ion-icon name="log-in-outline"></ion-icon>
         <ion-item routerLink="/login" routerDirection="root">Iniciar sesión</ion-item>
-      </ion-menu-toggle>
+      </ion-item>
 
-      <ion-menu-toggle auto-hide="true">
+      <ion-item>
+        <ion-icon name="fast-food-outline"></ion-icon>
         <ion-item routerLink="/view-recipes">Recetas Guardadas</ion-item>
-      </ion-menu-toggle>
+      </ion-item>
 
-      <ion-menu-toggle auto-hide="true">
-        <ion-item routerLink="/register-recipe">Registrar Receta</ion-item>
-      </ion-menu-toggle>
 
-      <ion-menu-toggle auto-hide="true">
+
+      <ion-item>      
+        <ion-icon name="book-outline"></ion-icon>
+        <ion-item routerLink="/register-recipe">Registrar Receta</ion-item>      
+      </ion-item>
+
+      <ion-item>       
+        <ion-icon name="help-circle-outline"></ion-icon>       
         <ion-item routerLink="/ayuda">Preguntas frecuentes</ion-item>
-      </ion-menu-toggle>
+      </ion-item>
 
       <ion-item button (click)="logout()">
-  <ion-icon slot="start" name="log-out-outline"></ion-icon>
-  <ion-label>Salir</ion-label>
-</ion-item>
+        <ion-icon slot="start" name="log-out-outline"></ion-icon>
+        <ion-label>Salir</ion-label>
+      </ion-item>
 
 
     </ion-list>
